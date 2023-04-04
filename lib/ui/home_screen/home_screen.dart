@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/models/product_model.dart';
 import 'package:shop/ui/home_screen/home_provider.dart';
@@ -14,10 +15,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final x = Get.put(HomeProvider());
   @override
   void initState() {
     super.initState();
-    context.read<HomeProvider>().fetchProducts();
+    //context.read<HomeProvider>().fetchProducts();
+    x.fetchProducts();
   }
 
   @override
@@ -25,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: Colors.white.withOpacity(0.2),
       appBar: AppBar(
+        
         backgroundColor: primary,
         title: Text("Products"),
         centerTitle: true,
@@ -34,7 +38,9 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   _body() {
-    return Consumer<HomeProvider>(builder: (context, x, _) {
+    return 
+    GetBuilder<HomeProvider>(builder: (x) 
+    {
       if (x.isLoading) {
         return Center(child: CircularProgressIndicator());
       }
