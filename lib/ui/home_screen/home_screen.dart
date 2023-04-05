@@ -15,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final x = Get.put(HomeProvider());
+  final x = Get.find<HomeProvider>();
   @override
   void initState() {
     super.initState();
@@ -23,6 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
     x.fetchProducts();
   }
 
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
